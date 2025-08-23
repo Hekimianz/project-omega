@@ -1,31 +1,16 @@
-import { useRef } from 'react';
-import keyDownSound from '../assets/keyDown.wav';
-
+import Content from '../components/Content';
 type Props = { isMuted: boolean };
 function Menu({ isMuted }: Props) {
-  const sfxRef = useRef<HTMLAudioElement>(null);
-
-  const handleClick = () => {
-    if (isMuted) return;
-    const el = sfxRef.current;
-    if (!el) return;
-    el.currentTime = 0;
-    el.volume = 0.8;
-    el.play().catch(() => {});
-  };
   return (
-    <div className="content">
-      <audio ref={sfxRef} src={keyDownSound} preload="auto" />
-      <div className="story-text">
-        {'Welcome to Station Omega user < M.Chen >'}.
-        <span className="cursor"></span>
-      </div>
-      <div className="choices">
-        <button onClick={handleClick} className="choice">
-          [1] START
-        </button>
-      </div>
-    </div>
+    <Content
+      isMuted={isMuted}
+      storyText="Welcome to Station Omega user < M.Chen >."
+      choices={[
+        { id: 1, choice: 'START' },
+        { id: 2, choice: 'ABOUT' },
+        { id: 3, choice: 'OPTIONS' },
+      ]}
+    />
   );
 }
 
