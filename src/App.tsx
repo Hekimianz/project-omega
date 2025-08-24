@@ -5,8 +5,19 @@ import ambientSound from './assets/ambient.wav';
 import Header from './components/Header';
 import Menu from './pages/Menu';
 
+type User = {
+  firstName: string;
+  lastName: string;
+  fullName: string;
+};
+
 function App() {
-  const [muted, setMuted] = useState(false);
+  const [muted, setMuted] = useState<boolean>(false);
+  const [user, setUser] = useState<User>({
+    firstName: '',
+    lastName: '',
+    fullName: '',
+  });
   const audioRef = useRef<HTMLAudioElement>(null);
 
   useEffect(() => {
@@ -33,7 +44,7 @@ function App() {
       />
       <div className="terminal">
         <Header />
-        <Menu isMuted={muted} />
+        <Menu setUser={setUser} user={user} />
       </div>
     </section>
   );

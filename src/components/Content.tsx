@@ -22,7 +22,7 @@ export default function Content({ isMuted, storyText, choices }: Props) {
     el.currentTime = 0;
     el.volume = 0.8;
     el.play().catch(() => {});
-    alert('choice clicked: ' + id);
+    console.log('choice clicked: ' + id);
   };
   return (
     <div className="content">
